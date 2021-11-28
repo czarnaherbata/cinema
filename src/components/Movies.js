@@ -37,6 +37,8 @@ class Movies extends Component {
         })
     }
 
+
+
     // onClick() {
     //     confirmAlert({
     //         customUI: ({ onClose }) => {
@@ -52,38 +54,58 @@ class Movies extends Component {
     // }
 
     addMovie() {
-            this.setState(state => {
-                if (state.title !== '' && state.year !== '' && state.duration !== '') {
-                    var movies = state.moviesList
+        this.setState(state => {
+            if (state.title !== '' && state.year !== '' && state.duration !== '') {
+                var movies = state.moviesList
         
-                    movies.push({
-                        title: state.title,
-                        year: state.year,
-                        duration: state.duration
-                    })
+                movies.push({
+                    title: state.title,
+                    year: state.year,
+                    duration: state.duration
+                })
         
-                    return {moviesList : movies}
-                }
-            })
-        }
-    
+                return {moviesList : movies}
+            }
+        })
+    }
+    editMovie(index, s)
+    {
+        this.setState(state=>{
+            var movies=state.moviesList;
+            movies[index].title=s.editTitle;
+            movies[index].year=s.editYear;
+            movies[index].duration=s.editDuration;
+
+        })
+            
+        
+    }
+deleteMovie(index)
+{
+    this.setState(state=>{
+        var movies=state.moviesList
+        movies.splice(index, 1)
+        return{moviesList:movies}
+    }
+        )
+}
+
     render() {
         return (
             <div>
-                <ul>
-                    <h3>Lista Filmów</h3>
+                <section className="moviesList">
+                    {/* <h3>Lista Filmów</h3> */}
                     {this.state.moviesList.map((movie, key) => {
                         return (
-                            <li key={key}>
-                                <Movie
-                                    title = {movie.title}
-                                    year = {movie.year}
-                                    duration = {movie.duration}
-                                />
-                            </li>
+                            <Movie
+                                key={key}
+                                title = {movie.title}
+                                year = {movie.year}
+                                duration = {movie.duration}
+                            />
                         )
                     })}
-                </ul>
+                </section>
 
                 <div>
                     <p>Dodaj film</p>
@@ -91,6 +113,19 @@ class Movies extends Component {
                     <input type="text" placeholder="Rok produkcji" id="year" onChange={(e) => this.onChange(e)}/>
                     <input type="text" placeholder="Długość filmu (minuty)" id="duration" onChange={(e) => this.onChange(e)}/>
                     <button variant="secondary" onClick={() => this.addMovie()}>Dodaj</button>
+                </div>
+                <div>
+                    <p>Usun film</p>
+                    <input type="text" placeholder="Tytuł filmu" id="title" onChange={(e) => this.onChange(e)}/>
+                    
+                    <button variant="secondary" onClick={() => this.deleteMovie()}>Usun</button>
+                </div>
+
+                <div>
+                    <p>Edytuj film</p>
+                    <input type="text" placeholder="Tytuł filmu" id="editMovie" onChange={(e) => this.onChange(e)}/>
+                    
+                    <button variant="secondary" onClick={() => this.editMovie()}>Usun</button>
                 </div>
             </div>
         )    

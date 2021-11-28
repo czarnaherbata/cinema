@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 
 const Movie = props => {
     return (
-        <div>
+        <div className="movie">
             <p>Tytuł: {props.title}</p>
             <p>Rok produkcji: {props.year}</p>
             <p>Czas trwania: {props.duration}</p>
