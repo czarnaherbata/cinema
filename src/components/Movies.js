@@ -26,8 +26,11 @@ class Movies extends Component {
 
             title: '',
             year: '',
-            duration: ''
+            duration: '',
+            sortValue:'',
+            inputValue: ''
         }
+ 
     }
     
     onChange(e) {
@@ -37,7 +40,11 @@ class Movies extends Component {
         })
     }
 
-
+    movieFilter=(e)=>{
+        this.setState({
+            inputValue:e.target.v
+        })
+    }
 
     // onClick() {
     //     confirmAlert({
@@ -93,7 +100,12 @@ deleteMovie(index)
     render() {
         return (
             <div>
+              
+                <input type="next" placeholder="Search" value={this.props.inputValue}  onChange={(e) => this.onChange(e)}></input>
+                <button variant="search" >Search</button>
                 <section className="moviesList">
+             
+                
                     {/* <h3>Lista Filmów</h3> */}
                     {this.state.moviesList.map((movie, key) => {
                         return (
@@ -102,7 +114,10 @@ deleteMovie(index)
                                 title = {movie.title}
                                 year = {movie.year}
                                 duration = {movie.duration}
+                                
+                            
                             />
+                            
                         )
                     })}
                 </section>

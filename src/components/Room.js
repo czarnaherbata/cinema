@@ -5,8 +5,7 @@ class Room extends React.Component {
         super(props)
 
         this.state = {
-            seats=this.seats,
-            show=
+            seats=props.seats,
         }
     }
 

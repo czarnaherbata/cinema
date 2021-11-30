@@ -11,10 +11,10 @@ class Show extends Component
 
         this.state={
             show:{
-            title=this.title,
-            year=this.year,
-            duration=this.duration,
-            date=this.date,
+           // title=props.title,
+            year=props.year,
+            duration=props.duration,
+            date=props.date,
             }
         }
      
