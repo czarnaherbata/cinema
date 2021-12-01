@@ -3,6 +3,12 @@ import Movie from "./Movie"
 import {confirmAlert} from 'react-confirm-alert'
 import 'react-confirm-alert/src/react-confirm-alert.css'
 import Button from "@restart/ui/esm/Button";
+import { Route } from "react-router"
+import { BrowserRouter as Router } from "react-router-dom"
+import { Link } from "react-router-dom"
+import { Routes } from "react-router";
+import Popup from "reactjs-popup";
+import reactDom from "react-dom";
 
 
 class Movies extends Component {
@@ -46,20 +52,6 @@ class Movies extends Component {
         })
     }
 
-    // onClick() {
-    //     confirmAlert({
-    //         customUI: ({ onClose }) => {
-    //             return (
-    //                 <div>
-    //                     <h1>Dodaj informacje o filmie</h1>
-    //                     <p><textarea cols="50" rows="10" id="content" defaultValue={this.state.content} onChange={(e) => this.onChange(e)}></textarea></p>
-    //                     <Button style={{float: "right"}} variant="danger" onClick={onClose}>Zamknij okno</Button>
-    //                 </div>
-    //             );
-    //         }
-    //     });
-    // }
-
     addMovie() {
         this.setState(state => {
             if (state.title !== '' && state.year !== '' && state.duration !== '') {
@@ -75,27 +67,33 @@ class Movies extends Component {
             }
         })
     }
-    editMovie(index, s)
+
+
+
+    editMovie = index => {
+        return (<div className="editMovie">
+                    <input type="text" placeholder="Tytuł filmu" id="title" onChange={(e) => this.onChange(e)}/>
+                    <input type="text" placeholder="Rok produkcji" id="year" onChange={(e) => this.onChange(e)}/>
+                    <input type="text" placeholder="Długość filmu (minuty)" id="duration" onChange={(e) => this.onChange(e)}/>
+                </div>)
+
+        // this.setState(state=>{
+        //     var movies=state.moviesList;
+        //     movies[index].title=s.editTitle;
+        //     movies[index].year=s.editYear;
+        //     movies[index].duration=s.editDuration;
+        // })
+    }
+
+    deleteMovie(index)
     {
         this.setState(state=>{
-            var movies=state.moviesList;
-            movies[index].title=s.editTitle;
-            movies[index].year=s.editYear;
-            movies[index].duration=s.editDuration;
-
-        })
-            
-        
-    }
-deleteMovie(index)
-{
-    this.setState(state=>{
-        var movies=state.moviesList
-        movies.splice(index, 1)
-        return{moviesList:movies}
-    }
+                var movies=state.moviesList
+                movies.splice(index, 1)
+                return{moviesList:movies}
+            }
         )
-}
+    }
 
     render() {
         return (
@@ -109,20 +107,21 @@ deleteMovie(index)
                     {/* <h3>Lista Filmów</h3> */}
                     {this.state.moviesList.map((movie, key) => {
                         return (
-                            <Movie
+                            <div className="movieContainer">
+                                <Movie
                                 key={key}
                                 title = {movie.title}
                                 year = {movie.year}
                                 duration = {movie.duration}
-                                
-                            
-                            />
-                            
+                                />
+                                <button variant="secondary" onClick={() => this.deleteMovie(key)}>Usuń Film</button>
+                                <button variant="secondary" onClick={() => this.editMovie(key)}>Edytuj Film</button>
+                            </div>
                         )
                     })}
                 </section>
 
-                <div>
+                 <div>
                     <p>Dodaj film</p>
                     <input type="text" placeholder="Tytuł filmu" id="title" onChange={(e) => this.onChange(e)}/>
                     <input type="text" placeholder="Rok produkcji" id="year" onChange={(e) => this.onChange(e)}/>
@@ -140,8 +139,8 @@ deleteMovie(index)
                     <p>Edytuj film</p>
                     <input type="text" placeholder="Tytuł filmu" id="editMovie" onChange={(e) => this.onChange(e)}/>
                     
-                    <button variant="secondary" onClick={() => this.editMovie()}>Usun</button>
-                </div>
+                    <button variant="secondary" onClick={() => this.editMovie()}>Edytuj</button>
+                </div> 
             </div>
         )    
     }

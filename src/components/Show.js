@@ -3,6 +3,7 @@ import Movie from "./Movie"
 import {confirmAlert} from 'react-confirm-alert'
 import 'react-confirm-alert/src/react-confirm-alert.css'
 import Button from "@restart/ui/esm/Button";
+//import moviesList from './components/Movies'
 
 class Show extends Component
 {
@@ -10,8 +11,8 @@ class Show extends Component
         super(props)
 
         this.state={
-            show:{
-           // title=props.title,
+            seans:{
+           title=props.title,
             year=props.year,
             duration=props.duration,
             date=props.date,
@@ -30,7 +31,7 @@ class Show extends Component
 addShow() {
     this.setState(state => {
         if (state.title !== '' && state.year !== '' && state.duration !== '' && state.date!=='') {
-            var show = state.Movie
+            var show = this.props.Movie
     
             show.push({
                 title: state.title,
@@ -39,9 +40,56 @@ addShow() {
                 date:state.date
             })
     
-            return {show : show}
+            return {seans : show}
         }
     })
+}
+render() {
+    return (
+        <div>
+          
+            
+            <section className="showList">
+         
+            
+                {/* <h3>Lista Filmów</h3> */}
+                {this.state.seans.map((show, key) => {
+                    return (
+                        <Show
+                            key={key}
+                            title = {show.title}
+                            year = {show.year}
+                            duration = {show.duration}
+                            
+                        
+                        />
+                        
+                    )
+                })}
+            </section>
+
+            <div>
+                <p>Dodaj seans</p>
+                <input type="text" placeholder="Tytuł filmu" id="title" onChange={(e) => this.onChange(e)}/>
+                <input type="text" placeholder="Rok produkcji" id="year" onChange={(e) => this.onChange(e)}/>
+                <input type="text" placeholder="Długość filmu (minuty)" id="duration" onChange={(e) => this.onChange(e)}/>
+                <button variant="secondary" onClick={() => this.addShow()}>Dodaj</button>
+            </div>
+            <div>
+                <p>Usun seans</p>
+                <input type="text" placeholder="Tytuł filmu" id="title" onChange={(e) => this.onChange(e)}/>
+                
+                <button variant="secondary" onClick={() => this.deleteMovie()}>Usun</button>
+            </div>
+
+            <div>
+                <p>Edytuj film</p>
+                <input type="text" placeholder="Tytuł filmu" id="editMovie" onChange={(e) => this.onChange(e)}/>
+                
+                <button variant="secondary" onClick={() => this.editMovie()}>Usun</button>
+            </div>
+        </div>
+    )    
 }
 
 

@@ -4,7 +4,7 @@ import Title from "./components/Title"
 import { Route } from "react-router"
 import { BrowserRouter as Router } from "react-router-dom"
 import { Link } from "react-router-dom"
-
+//import Routing from "./components/Routing"
 
 const pageTitle = "CinemaCity"
 
@@ -18,37 +18,16 @@ const Movie=()=>
     )
 }
 
-class Routing extends Component{
-    constructor(props){
-        super(props)
-        this.state={}
-    }
-
-
-    render()
-{
-    return(
-        <Router>
-            <Link to={{
-                pathname:'/first',
-                state:{message:'hello'}
-            }}>Go to first component
-            </Link>
-            <Route path="first" component={Movies}/>
-        </Router>
-    );
-}
-}
-
-
-
 function App() {
     return (
         <div>
+            React Crud Operations
             <Title />
+            {/* <Routing /> */}
             <div className="gradient-bar"/>
             <div className="main">
-                <Movies />
+
+            <Movies />
 
         
             </div>
