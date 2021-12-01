@@ -9,6 +9,7 @@ import { Link } from "react-router-dom"
 import { Routes } from "react-router";
 import Popup from "reactjs-popup";
 import reactDom from "react-dom";
+import { createMovie } from "../api/Api";
 
 
 class Movies extends Component {
@@ -56,7 +57,7 @@ class Movies extends Component {
         this.setState(state => {
             if (state.title !== '' && state.year !== '' && state.duration !== '') {
                 var movies = state.moviesList
-        
+                createMovie(state.title, state.year, state.duration)
                 movies.push({
                     title: state.title,
                     year: state.year,
