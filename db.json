@@ -1,14 +1,22 @@
 {
   "movies": [
     {
+      "id": 0,
       "title": 1,
       "year": "json-server",
       "duration": "typicode"
     },
     {
+      "id": 4,
       "title": "Kapitan",
       "year": 3,
-      "duration":"4"
+      "duration": "4"
+    },
+    {
+      "title": "1",
+      "year": "1",
+      "duration": "2",
+      "id": 5
     }
   ],
   "comments": [

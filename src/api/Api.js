@@ -6,9 +6,10 @@ import axios from 'axios'
 //const axios=require('axios')
 
 
-export const createMovie=async(title, year, duration)=>{
+export const createMovie=async(id,title, year, duration)=>{
     return await axios.post('http://localhost:4000/movies',
     {
+        id:id,
         title: title,
         year: year,
         duration: duration,
@@ -20,10 +21,11 @@ export const createMovie=async(title, year, duration)=>{
 
 
 
-export const titleAsMovie=async(title, year, duration)=>{
+export const titleAsMovie=async(id, title, year, duration)=>{
     return await axios.get('http://localhost:4000/movies?',
     {
         params:{
+            id:id,
             title:title,
             year:year,
             duration:duration

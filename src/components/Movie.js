@@ -12,12 +12,14 @@ const Movie = props => {
 };
 
 Movie.propTypes = {
+    id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired,
     duration: PropTypes.number.isRequired
 }
 
 Movie.defaultProps = {
+    id:"0",
     title: "MovieTitle",
     year: "MovieYear",
     duration: 0

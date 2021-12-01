@@ -19,18 +19,20 @@ class Movies extends Component {
         this.state = {
             moviesList : [
                 {
+                    id:1,
                     title: "Katarzyna Bella Donna",
                     year: 1998,
                     duration: 120
                 },
             
                 {
+                    id:2,
                     title: "Kapitan Bomba",
                     year: 2004,
                     duration: 69
                 }
             ], 
-
+            id:'',
             title: '',
             year: '',
             duration: '',
